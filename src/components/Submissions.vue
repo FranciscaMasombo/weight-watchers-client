@@ -3,6 +3,8 @@
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
   <div id="table">
     <v-client-table :columns="columns" :data="submissions" :options="options">
+      <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="editDonation(props.row._id)"></a>
+      <a slot="remove" slot-scope="props" class="fa fa-trash-o fa-2x" @click="deleteSubmission(props.row._id)"></a>
     </v-client-table>
   </div>
   </div>
@@ -22,7 +24,7 @@ export default {
       messagetitle: 'submissions',
       submissions: [],
       errors: [],
-      columns: ['_id', 'name', 'age', 'gender', 'startWeight', 'goalWeight', 'currentWeight', 'height', 'location', 'date'],
+      columns: ['_id', 'name', 'age', 'gender', 'startWeight', 'goalWeight', 'currentWeight', 'height', 'location', 'date', 'edit', 'remove'],
       options: {
         headings: {
           name: 'Name',
@@ -52,6 +54,40 @@ export default {
           this.errors.push(error)
           console.log(error)
         })
+    },
+    editDonation: function (id) {
+      this.$router.params = id
+      this.$router.push('edit')
+    },
+    deleteSubmission: function (id) {
+      this.$swal({
+        title: 'Are you totaly sure?',
+        text: 'You can\'t Undo this action',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'OK Delete it',
+        cancelButtonText: 'Cancel',
+        showCloseButton: true,
+        showLoaderOnConfirm: true
+      }).then((result) => {
+        console.log('SWAL RESULT: ' + result)
+        if (result.value === false) {
+          this.$swal('Cancelled', 'Your Donation still Counts!', 'info')
+        } else {
+          SubmissionServices.deleteSubmission(id)
+            .then(response => {
+              this.name = response.data
+              console.log(this.name)
+              this.loadsubs()
+              this.$swal('this been deleted fam' + JSON.stringify(response.data, null, 5), 'success')
+            })
+            .catch(error => {
+              this.$swal('ERROR', 'Something went wrong trying to Delete ' + error, 'error')
+              this.errors.push(error)
+              console.log(error)
+            })
+        }
+      })
     }
   }
 

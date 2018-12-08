@@ -6,7 +6,8 @@
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
           <b-nav-item to="/"><i class="fa fa-home" style="padding: 5px"> Home</i></b-nav-item>
-          <b-nav-item to="/submissions"><i class="fa fa-plus" style="padding: 5px"> Add submission</i></b-nav-item>
+          <b-nav-item to="/submissions"><i class="fa fa-plus" style="padding: 5px"> View Submissions</i></b-nav-item>
+          <b-nav-item to="/add-submission"><i class="fa fa-plus" style="padding: 5px"> Add submission</i></b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item to="/subs"><i class="fa fa-sign-in" style="padding: 5px"> Sign up </i></b-nav-item>

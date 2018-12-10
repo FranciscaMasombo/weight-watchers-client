@@ -10,7 +10,22 @@ module.exports = {
     filename: "bundle.js"
   }
   ,
-  devtool: 'cheap-module-eval-source-map',
+  devtool: '#source-map',
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'index.template.html'
+    }),new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: false
+        }
+      },
+      sourceMap: true,
+      parallel: true
+    })
+  ],
   module: {
     rules: [
       {
@@ -55,13 +70,7 @@ module.exports = {
     port: 8080,
     open: true,
     contentBase: '/dist'
-  },
-  plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'index.template.html'
-    })
-  ]
+  }
+
 }
 

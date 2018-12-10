@@ -8,7 +8,8 @@ module.exports = {
   output: {
     path: __dirname + "/dist",
     filename: "bundle.js"
-  },
+  }
+  ,
   devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
@@ -49,8 +50,15 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    clientLogLevel: 'warning',
+    port: 8080,
+    open: true,
+    contentBase: '/dist'
+  },
   plugins: [
     new CleanWebpackPlugin(['dist']),
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: 'index.template.html'
     })

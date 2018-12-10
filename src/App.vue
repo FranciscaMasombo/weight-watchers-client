@@ -10,7 +10,7 @@
           <b-nav-item to="/add-submission"><i class="fa fa-plus" style="padding: 5px"> Add submission</i></b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item to="/subs"><i class="fa fa-sign-in" style="padding: 5px"> Sign up </i></b-nav-item>
+          <b-nav-item to="/sign"><i class="fa fa-sign-in" style="padding: 5px"> Sign up </i></b-nav-item>
           <b-nav-item to="/logout"><i class="fa fa-sign-out" style="padding: 5px"> Logout </i></b-nav-item>
           <i class="fa fa-pied-piper-alt fa-1x" style="padding: 5px; color: white;"></i>
         </b-navbar-nav>
@@ -35,5 +35,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 10px;
+}
+.VueTables__sortable {
+  cursor: pointer;
 }
 </style>

@@ -1,9 +1,4 @@
 <template>
-  <div id="app1" class="add">
-    <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
-    <div class="container mt-3 mt-sm-5">
-      <div class="row justify-content-center">
-        <div class="col-md-6">
           <form @submit.prevent="add">
 
             <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
@@ -63,24 +58,21 @@
             </div>
 
             <p>
-              <button class="btn btn-primary btn1" type="submit" :disabled="submitStatus === 'PENDING'">Make Donation</button>
+              <button class="btn btn-primary btn1" type="submit" :disabled="submitStatus === 'PENDING'">{{subbtnt}}</button>
+            </p>
+            <p>
+              <a href="#/submissions" class="btn btn-primary btn1" role="button">Subs</a>
             </p>
             <p class="typo__p" v-if="submitStatus === 'OK'">Thanks for your Donation!</p>
             <p class="typo__p" v-if="submitStatus === 'ERROR'">Please Fill in the Form Correctly.</p>
             <p class="typo__p" v-if="submitStatus === 'PENDING'">Donating...</p>
           </form>
-        </div>
-      </div>
-      </div>
-  </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import VueForm from 'vueform'
 import Vuelidate from 'vuelidate'
-import VueSweetalert from 'vue-sweetalert'
-import SubmissionServices from '@/services/SubmissionServices'
 import { required } from 'vuelidate/lib/validators'
 Vue.use(VueForm, {
   inputClasses: {
@@ -89,22 +81,22 @@ Vue.use(VueForm, {
   }
 })
 Vue.use(Vuelidate)
-Vue.use(VueSweetalert)
+
 export default {
-  name: 'AddSubmission',
+  name: 'FormData',
+  props: ['subbtnt', 'sub'],
   data () {
     return {
       messagetitle: 'Add new Submission',
-      name: '',
-      age: '',
-      gender: '',
-      startWeight: '',
-      goalWeight: '',
-      currentWeight: '',
-      height: '',
-      location: '',
-      date: '',
-      sub: {},
+      name: this.sub.name,
+      age: this.sub.age,
+      gender: this.sub.gender,
+      startWeight: this.sub.startWeight,
+      goalWeight: this.sub.goalWeight,
+      currentWeight: this.sub.currentWeight,
+      height: this.sub.height,
+      location: this.sub.location,
+      date: this.sub.date,
       submitStatus: null
     }
   },
@@ -137,23 +129,24 @@ export default {
           }
           this.sub = sub
           console.log('Add the new Submission: ' + JSON.stringify(this.sub, null, 5))
-          this.addnewsub(this.sub)
+          // this.addnewsub(this.sub)
+          this.$emit('submission-is-created-updated', this.sub)
         }, 500)
       }
-    },
-    addnewsub: function (sub) {
-      console.log('submission added!')
-      console.log(' adding new submission ' + sub)
-      SubmissionServices.addsub(sub)
-        .then((response) => {
-          // JSON responses are automatically parsed.
-          console.log(response)
-        })
-        .catch(error => {
-          this.errors.push(error)
-          console.log(error)
-        })
     }
+    // addnewsub: function (sub) {
+    //   console.log('submission added!')
+    //   console.log(' adding new submission ' + sub)
+    //   SubmissionServices.addSubmissions(sub)
+    //     .then((response) => {
+    //       // JSON responses are automatically parsed.
+    //       console.log(response)
+    //     })
+    //     .catch(error => {
+    //       this.errors.push(error)
+    //       console.log(error)
+    //     })
+    // }
   }
 }
 </script>
@@ -167,7 +160,7 @@ export default {
   }
   #app1 {
     width: 99%;
-
+    margin: 0 auto;
   }
   .required-field > label::after {
     content: '*';

@@ -1,9 +1,9 @@
 <template>
-  <div class="app">
+  <div class="hero">
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
   <div id="table">
-    <v-client-table :columns="columns" :data="submissions" :options="options">
-      <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="editDonation(props.row._id)"></a>
+    <v-client-table :columns="columns" :data="subs" :options="options">
+      <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="ee(props.row._id)"></a>
       <a slot="remove" slot-scope="props" class="fa fa-trash-o fa-2x" @click="deleteSubmission(props.row._id)"></a>
     </v-client-table>
   </div>
@@ -11,18 +11,19 @@
 </template>
 
 <script>
-import SubmissionServices from '@/services/SubmissionServices'
+import SubmissionServices from '@/services/subservices'
 import Vue from 'vue'
 import VueTables from 'vue-tables-2'
+import swal from 'sweetalert'
 
 Vue.use(VueTables.ClientTable, {compileTemplates: true, filterByColumn: true})
-
 export default {
-  name: 'Submissions',
+  name: 'subs',
   data () {
     return {
       messagetitle: 'submissions',
-      submissions: [],
+      subs: [],
+      props: ['_id'],
       errors: [],
       columns: ['_id', 'name', 'age', 'gender', 'startWeight', 'goalWeight', 'currentWeight', 'height', 'location', 'date', 'edit', 'remove'],
       options: {
@@ -45,22 +46,22 @@ export default {
   },
   methods: {
     loadsubs: function () {
-      SubmissionServices.getsubs()
+      SubmissionServices.getSubmissions()
         .then(reponse => {
-          this.submissions = reponse.data
-          console.log(this.submissions)
+          this.subs = reponse.data
+          console.log(this.subs)
         })
         .catch(error => {
           this.errors.push(error)
           console.log(error)
         })
     },
-    editDonation: function (id) {
+    ee: function (id) {
       this.$router.params = id
-      this.$router.push('edit')
+      this.$router.push('update-submission')
     },
     deleteSubmission: function (id) {
-      this.$swal({
+      swal({
         title: 'Are you totaly sure?',
         text: 'You can\'t Undo this action',
         type: 'warning',
@@ -72,17 +73,17 @@ export default {
       }).then((result) => {
         console.log('SWAL RESULT: ' + result)
         if (result.value === false) {
-          this.$swal('Cancelled', 'Your Donation still Counts!', 'info')
+          swal('Cancelled', 'Your Donation still Counts!', 'info')
         } else {
           SubmissionServices.deleteSubmission(id)
             .then(response => {
               this.name = response.data
               console.log(this.name)
               this.loadsubs()
-              this.$swal('this been deleted fam' + JSON.stringify(response.data, null, 5), 'success')
+              this.swal('this been deleted fam' + JSON.stringify(response.data, null, 5), 'success')
             })
             .catch(error => {
-              this.$swal('ERROR', 'Something went wrong trying to Delete ' + error, 'error')
+              swal('ERROR', 'Something went wrong trying to Delete ' + error, 'error')
               this.errors.push(error)
               console.log(error)
             })

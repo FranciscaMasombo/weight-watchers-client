@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
-import Submissions from '@/components/Submissions'
-import AddSubmission from '@/components/AddSubmission'
+import home from '@/components/home'
+import subs from '@/components/subs'
+import addSub from '@/components/addSub'
+import updateSub from '@/components/updateSub'
 
 Vue.use(Router)
 
@@ -10,18 +11,24 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      name: 'home',
+      component: home
     },
     {
       path: '/submissions',
-      name: 'Submissions',
-      component: Submissions
+      name: 'subs',
+      component: subs
     },
     {
       path: '/add-submission',
-      name: 'AddSubmission',
-      component: AddSubmission
+      name: 'addSub',
+      component: addSub
+    },
+    {
+      path: '/update-submission',
+      name: 'updateSub',
+      component: updateSub,
+      props: true
     }
   ]
 })

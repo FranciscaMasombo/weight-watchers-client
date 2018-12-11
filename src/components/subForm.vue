@@ -28,17 +28,17 @@
             </div>
 
             <div class="form-group">
-              <label class="form-control-label" name="goalWeight">goalWeight</label>
+              <label class="form-control-label" name="goalWeight">Goal Weight</label>
               <input class="form__input" type="number" placeholder="goalWeight" v-model="goalWeight"/>
             </div>
 
             <div class="form-group">
-              <label class="form-control-label" currentWeight="goalWeight">currentWeight</label>
+              <label class="form-control-label" currentWeight="goalWeight">Current Weight</label>
               <input class="form__input" type="number" placeholder="currentWeight" v-model="currentWeight" />
             </div>
 
             <div class="form-group">
-              <label class="form-control-label" name="height">height</label>
+              <label class="form-control-label" name="height">Height</label>
               <input class="form__input" type="number" placeholder="height" v-model="height" />
             </div>
 
@@ -53,7 +53,7 @@
             </div>
 
             <div class="form-group">
-              <label class="form-control-label" name="date">date</label>
+              <label class="form-control-label" name="date">Date</label>
               <input class="form__input" type="date" placeholder="date" v-model="date" />
             </div>
 
@@ -61,11 +61,11 @@
               <button class="btn btn-primary btn1" type="submit" :disabled="submitStatus === 'PENDING'">{{subbtnt}}</button>
             </p>
             <p>
-              <a href="#/submissions" class="btn btn-primary btn1" role="button">Subs</a>
+              <a href="#/submissions" class="btn btn-primary btn1" id="bb" name="bb" role="button">View Member Info</a>
             </p>
-            <p class="typo__p" v-if="submitStatus === 'OK'">Thanks for your Donation!</p>
+            <p class="typo__p" v-if="submitStatus === 'OK'">New member updated</p>
             <p class="typo__p" v-if="submitStatus === 'ERROR'">Please Fill in the Form Correctly.</p>
-            <p class="typo__p" v-if="submitStatus === 'PENDING'">Donating...</p>
+            <p class="typo__p" v-if="submitStatus === 'PENDING'">Updating...</p>
           </form>
 </template>
 
@@ -87,7 +87,7 @@ export default {
   props: ['subbtnt', 'sub'],
   data () {
     return {
-      messagetitle: 'Add new Submission',
+      messagetitle: 'Add new Member',
       name: this.sub.name,
       age: this.sub.age,
       gender: this.sub.gender,
@@ -181,8 +181,9 @@ export default {
     font-size: large;
   }
   .btn1 {
-    width: 300px;
-    font-size: x-large;
+    width: 100%;
+    font-size: large;
+    background-color: teal;
   }
   p {
     margin-top: 20px;

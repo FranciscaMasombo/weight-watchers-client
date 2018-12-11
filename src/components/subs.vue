@@ -1,6 +1,6 @@
 <template>
   <div class="hero">
-    <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
+    <h3 class="vue-title">{{messagetitle}}</h3>
   <div id="table">
     <v-client-table :columns="columns" :data="subs" :options="options">
       <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="ee(props.row._id)"></a>
@@ -16,17 +16,19 @@ import Vue from 'vue'
 import VueTables from 'vue-tables-2'
 import swal from 'sweetalert'
 
-Vue.use(VueTables.ClientTable, {compileTemplates: true, filterByColumn: true})
+Vue.use(VueTables.ClientTable, {compileTemplates: true, filterByColumn: true, sortByColumn: true})
 export default {
   name: 'subs',
   data () {
     return {
-      messagetitle: 'submissions',
+      messagetitle: 'Registered Members',
       subs: [],
       props: ['_id'],
       errors: [],
-      columns: ['_id', 'name', 'age', 'gender', 'startWeight', 'goalWeight', 'currentWeight', 'height', 'location', 'date', 'edit', 'remove'],
+      columns: ['name', 'age', 'gender', 'startWeight', 'goalWeight', 'currentWeight', 'location', 'edit', 'remove'],
       options: {
+        filterable: ['name', 'age', 'location'],
+        sortable: ['name', 'age'],
         headings: {
           name: 'Name',
           age: 'Age',
@@ -69,7 +71,8 @@ export default {
         confirmButtonText: 'OK Delete it',
         cancelButtonText: 'Cancel',
         showCloseButton: true,
-        showLoaderOnConfirm: true
+        showLoaderOnConfirm: true,
+        reverseButtons: true
       }).then((result) => {
         console.log('SWAL RESULT: ' + result)
         if (result.value === false) {
@@ -80,7 +83,9 @@ export default {
               this.name = response.data
               console.log(this.name)
               this.loadsubs()
-              this.swal('this been deleted fam' + JSON.stringify(response.data, null, 5), 'success')
+              swal('Deleted!',
+                'Your file has been deleted.',
+                'success')
             })
             .catch(error => {
               swal('ERROR', 'Something went wrong trying to Delete ' + error, 'error')
@@ -99,11 +104,12 @@ export default {
   .vue-title {
     margin-top: 30px;
     text-align: center;
-    font-size: 45pt;
+    font-size: 15pt;
     margin-bottom: 10px;
   }
   #table{
-    width: 60%;
+    width: 85%;
     margin: 0 auto;
+    font-size: 15pt;
   }
 </style>

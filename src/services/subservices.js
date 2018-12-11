@@ -18,7 +18,7 @@ export default {
   putSubmission (id, sub) {
     console.log('REQUESTING' + sub._id + ' ' +
     JSON.stringify(sub, null, 5))
-    return Api().put(`/update-sugit commit -m "Include CSS in bundle"bmission/${id}`, sub,
+    return Api().put(`/update-submission/${id}`, sub,
       { headers: {'Content-type': 'application/json'} })
   }
 }

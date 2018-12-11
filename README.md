@@ -1,4 +1,43 @@
 # weight-watchers-client
+# Assignment 2 - Vue app - Automated development process.
+
+Name: ... Francisca ...
+
+Student No.:  20070883
+
+## Overview.
+
+......The start  of testing ........
+
+## E2E Testing.
+
+. . . A listing of the output generated locally from running ONE of your spec test files (choose the best one). The command to produce this is similar to the following:
+
+     $ npx cypress run --spec cypress/integration/tests addsubs.spec.js
+     $ npx cypress run --spec cypress/integration/tests home.spec.js
+
+## Continuous Integration.
+
+. . . URL of the Travis build page for the Vue app, e.g.
+
+https://travis-ci.org/diarmuidoconnor/donationsSPA
+
+## Automated Deployment.
+
+.... Specify the URL of the auto-deployed Vue app, e.g.
+
+http://profuse-trick.surge.sh/
+
+## Extra features.
+
+. . . . Briefly state any extra aspects of your automation process that you feel should be high-lighted . . . . .
+
+## Appendix.
+
+. . . .  A listing of the output generated from running locally all of your spec test files. The command to produce this is:
+
+     $ npx cypress run
+
 
 > A Vue.js project
 

@@ -1,14 +1,12 @@
-<!--suppress JSValidateTypes -->
 <template>
   <div>
-    <b-form @submit="onSubmit" @reset="onReset">
+    <b-form @submit.prevent="onSubmit" @reset="onReset">
       <div class="row">
         <div class="col">
           <b-form-group
             :class="{ 'form-group--error': $v.fname.$error }"
             class="form-control-label"
-            label="First Name"
-          >
+            label="First Name">
             <b-form-input
               class="form__input"
               type="text"
@@ -16,6 +14,7 @@
               required
               placeholder="Enter First Name"
             >
+
             </b-form-input>
           </b-form-group>
           <div class="error" v-if="submitStatus === 'OK'">required</div>
@@ -38,7 +37,6 @@
           </b-form-group>
         </div>
       </div>
-
       <div class="row">
         <div class="col">
           <b-form-group
@@ -78,7 +76,8 @@
       </div>
 
       <div class="row">
-        <div class="col">
+        <div class="col" >
+          <div class="form-group" :class="{ 'form-group--error': $v.age.$error }">
           <b-form-group
             id="age"
             class="form-control-label"
@@ -88,13 +87,19 @@
             <b-form-input
               id="age"
               type="number"
-              v-model="age"
+              v-model.trim.lazy="$v.age.$model"
               required
               placeholder="Enter Your Age"
             >
             </b-form-input>
           </b-form-group>
-        </div>
+          </div>
+          <div class="error"
+               v-if="!$v.age.between">Must be between
+               {{$v.age.$params.between.min}}
+               and {{$v.age.$params.between.max}}
+          </div>
+          </div>
         <div class="col">
           <b-form-group label="Gender" class="form-control-label">
             <b-form-radio-group id="gender" v-model="gender" name="gender">
@@ -253,11 +258,10 @@
         </div>
       </div>
 
-      <p class="typo__p" v-if="submitStatus === 'OK'">New member updated</p>
-      <p class="typo__p" v-if="submitStatus === 'ERROR'">
-        Please Fill in the Form Correctly.
-      </p>
-      <p class="typo__p" v-if="submitStatus === 'PENDING'">Updating...</p>
+      <p class="typo__p" v-if="submitStatus === 'OK'">Thanks for your submission!</p>
+      <p class="typo__p" v-if="submitStatus === 'ERROR'">Please fill the form correctly.</p>
+      <p class="typo__p" v-if="submitStatus === 'PENDING'">Sending...</p>
+
     </b-form>
   </div>
 </template>
@@ -265,15 +269,12 @@
 import Vue from 'vue'
 import VueForm from 'vueform'
 import Vuelidate from 'vuelidate'
+import swal from 'sweetalert'
 import bForm from 'bootstrap-vue/es/components/form/form'
-import { required } from 'vuelidate/lib/validators'
+import { required, between } from 'vuelidate/lib/validators'
+
 Vue.component('b-form', bForm)
-Vue.use(VueForm, {
-  inputClasses: {
-    valid: 'form-control-success',
-    invalid: 'form-control-danger'
-  }
-})
+Vue.use(VueForm)
 Vue.use(Vuelidate)
 
 export default {
@@ -301,40 +302,46 @@ export default {
   validations: {
     fname: {
       required
+    },
+    age: {
+      between: between(16, 70)
     }
   },
   methods: {
     onSubmit: function (evt) {
       evt.preventDefault()
-      console.log('added')
+      console.log('submit!')
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
+        swal('Good job!', 'You clicked the button!', 'error')
       } else {
         this.submitStatus = 'PENDING'
-        this.submitStatus = 'OK'
-        console.log('whats going on')
-        let sub = {
-          fname: this.fname,
-          lname: this.lname,
-          email: this.email,
-          number: this.number,
-          gender: this.gender,
-          age: this.age,
-          weightType: this.weightType,
-          startWeight: this.startWeight,
-          goalWeight: this.goalWeight,
-          currentWeight: this.currentWeight,
-          location: this.location,
-          date: this.date,
-          note: this.note
-        }
-        this.sub = sub
-        console.log(
-          'Add the new Submission: ' + JSON.stringify(this.sub, null, 5)
-        )
-        // this.$emit('value', this.sub)
-        this.$emit('RegisterNewMember', this.sub)
+        setTimeout(() => {
+          this.submitStatus = 'OK'
+          console.log('whats going on')
+          let sub = {
+            fname: this.fname,
+            lname: this.lname,
+            email: this.email,
+            number: this.number,
+            gender: this.gender,
+            age: this.age,
+            weightType: this.weightType,
+            startWeight: this.startWeight,
+            goalWeight: this.goalWeight,
+            currentWeight: this.currentWeight,
+            location: this.location,
+            date: this.date,
+            note: this.note
+          }
+          this.sub = sub
+          console.log(
+            'Add the new Submission: ' + JSON.stringify(this.sub, null, 5)
+          )
+          // this.$emit('value', this.sub)
+          this.$emit('RegisterNewMember', this.sub)
+        }, 500)
       }
     },
     onReset (evt) {
@@ -345,7 +352,7 @@ export default {
       this.email = ''
       this.number = ''
       this.gender = ''
-      this.age = ''
+      this.age = 0
       this.weightType = ''
       this.startWeight = ''
       this.goalWeight = ''
@@ -368,6 +375,7 @@ export default {
 .form-control-label {
   text-align: left;
 }
+
 label {
   display: inline-block;
   width: 480px;

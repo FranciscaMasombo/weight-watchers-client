@@ -2,16 +2,19 @@
     "env": {
         "browser": true,
         "commonjs": true,
+      "node": true,
+      "mocha": true,
         "es6": true
     },
    "parser": "babel-eslint",
-    "extends":
-    "eslint:recommended",
+    "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": 2015
     },
+  "plugins": [
+    "json","prettier"],
     "rules": {
-
+      "prettier/prettier": "error",
         "indent": [
             "error",
             4

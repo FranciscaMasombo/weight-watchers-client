@@ -6,7 +6,7 @@ export default {
   },
   addSubmissions (sub) {
     return Api().post('/add-submission', sub, {
-      headers: {'Content-type': 'application/json'}
+      headers: { 'Content-type': 'application/json' }
     })
   },
   deleteSubmission (id) {
@@ -16,9 +16,9 @@ export default {
     return Api().get(`/listOneSubmission/${id}`)
   },
   putSubmission (id, sub) {
-    console.log('REQUESTING' + sub._id + ' ' +
-    JSON.stringify(sub, null, 5))
-    return Api().put(`/update-submission/${id}`, sub,
-      { headers: {'Content-type': 'application/json'} })
+    console.log('REQUESTING' + sub._id + ' ' + JSON.stringify(sub, null, 5))
+    return Api().put(`/update-submission/${id}`, sub, {
+      headers: { 'Content-type': 'application/json' }
+    })
   }
 }

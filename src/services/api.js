@@ -1,8 +1,8 @@
 import axios from 'axios'
+// baseURL: 'https://weightwatchers-server.herokuapp.com/'
 
-export default() => {
+export default () => {
   return axios.create({
-    // baseURL: 'http://localhost:3000/'
-    baseURL: 'https://weightwatchers-server.herokuapp.com/'
+    baseURL: 'http://localhost:3000/'
   })
 }

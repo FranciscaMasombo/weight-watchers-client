@@ -1,12 +1,22 @@
 <template>
   <div class="hero">
-    <h3 class="vue-title">{{messagetitle}}</h3>
-  <div id="table">
-    <v-client-table :columns="columns" :data="subs" :options="options">
-      <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="ee(props.row._id)"></a>
-      <a slot="remove" slot-scope="props" class="fa fa-trash-o fa-2x" @click="deleteSubmission(props.row._id)"></a>
-    </v-client-table>
-  </div>
+    <h3 class="vue-title">{{ messagetitle }}</h3>
+    <div id="table">
+      <v-client-table :columns="columns" :data="subs" :options="options">
+        <a
+          slot="edit"
+          slot-scope="props"
+          class="fa fa-edit fa-2x"
+          @click="ee(props.row._id)"
+        ></a>
+        <a
+          slot="remove"
+          slot-scope="props"
+          class="fa fa-trash-o fa-2x"
+          @click="deleteSubmission(props.row._id)"
+        ></a>
+      </v-client-table>
+    </div>
   </div>
 </template>
 
@@ -16,7 +26,11 @@ import Vue from 'vue'
 import VueTables from 'vue-tables-2'
 import swal from 'sweetalert'
 
-Vue.use(VueTables.ClientTable, {compileTemplates: true, filterByColumn: true, sortByColumn: true})
+Vue.use(VueTables.ClientTable, {
+  compileTemplates: true,
+  filterByColumn: true,
+  sortByColumn: true
+})
 export default {
   name: 'subs',
   data () {
@@ -25,7 +39,17 @@ export default {
       subs: [],
       props: ['_id'],
       errors: [],
-      columns: ['name', 'age', 'gender', 'startWeight', 'goalWeight', 'currentWeight', 'location', 'edit', 'remove'],
+      columns: [
+        'name',
+        'age',
+        'gender',
+        'startWeight',
+        'goalWeight',
+        'currentWeight',
+        'location',
+        'edit',
+        'remove'
+      ],
       options: {
         filterable: ['name', 'age', 'location'],
         sortable: ['name', 'age'],
@@ -65,7 +89,7 @@ export default {
     deleteSubmission: function (id) {
       swal({
         title: 'Are you totaly sure?',
-        text: 'You can\'t Undo this action',
+        text: "You can't Undo this action",
         type: 'warning',
         showCancelButton: true,
         confirmButtonText: 'OK Delete it',
@@ -73,7 +97,7 @@ export default {
         showCloseButton: true,
         showLoaderOnConfirm: true,
         reverseButtons: true
-      }).then((result) => {
+      }).then(result => {
         console.log('SWAL RESULT: ' + result)
         if (result.value === false) {
           swal('Cancelled', 'Your Donation still Counts!', 'info')
@@ -83,12 +107,14 @@ export default {
               this.name = response.data
               console.log(this.name)
               this.loadsubs()
-              swal('Deleted!',
-                'Your file has been deleted.',
-                'success')
+              swal('Deleted!', 'Your file has been deleted.', 'success')
             })
             .catch(error => {
-              swal('ERROR', 'Something went wrong trying to Delete ' + error, 'error')
+              swal(
+                'ERROR',
+                'Something went wrong trying to Delete ' + error,
+                'error'
+              )
               this.errors.push(error)
               console.log(error)
             })
@@ -96,20 +122,19 @@ export default {
       })
     }
   }
-
 }
 </script>
 
 <style scoped>
-  .vue-title {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 15pt;
-    margin-bottom: 10px;
-  }
-  #table{
-    width: 85%;
-    margin: 0 auto;
-    font-size: 15pt;
-  }
+.vue-title {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 15pt;
+  margin-bottom: 10px;
+}
+#table {
+  width: 85%;
+  margin: 0 auto;
+  font-size: 15pt;
+}
 </style>

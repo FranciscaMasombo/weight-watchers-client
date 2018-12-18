@@ -3,20 +3,23 @@
     <b-form @submit.prevent="onSubmit" @reset="onReset">
       <div class="row">
         <div class="col">
+          <div class="form-group" :class="{ 'form-group--error': $v.fname.$error }">
           <b-form-group
-            :class="{ 'form-group--error': $v.fname.$error }"
             class="form-control-label"
             label="First Name">
             <b-form-input
               class="form__input"
               type="text"
-              v-model="fname"
+              v-model.trim="$v.fname.$model"
               required
               placeholder="Enter First Name"
             >
-
             </b-form-input>
           </b-form-group>
+          </div>
+          <div class="error" v-if="!$v.fname.required">Field is required</div>
+          <div class="error" v-if="!$v.fname.minLength">Name must have at least
+            {{$v.fname.$params.minLength.min}} letters.</div>
           <div class="error" v-if="submitStatus === 'OK'">required</div>
         </div>
         <div class="col">
@@ -37,6 +40,7 @@
           </b-form-group>
         </div>
       </div>
+
       <div class="row">
         <div class="col">
           <b-form-group
@@ -119,7 +123,10 @@
             label="Weight Type"
             label-for="weightType"
           >
-            <b-form-select :value="null" id="weightType">
+            <b-form-select id="weightType"
+                           v-model="weightType"
+                           class="form-control"
+                           type="text" >
               <option slot="first" :value="null">Choose...</option>
               <option value="Pounds">Pounds</option>
               <option value="Stone">Stone</option>
@@ -191,8 +198,9 @@
             label="Location"
             label-for="location"
           >
-            <b-form-select :value="null" id="location">
-              <option slot="first" :value="null">Choose...</option>
+            <b-form-select type="text"
+                           v-model="location">
+              <option slot="first" :value="null" disabled>Choose...</option>
               <option value="Dublin">Dublin</option>
               <option value="Waterford">Waterford</option>
               <option value="Cork">Cork</option>
@@ -271,7 +279,7 @@ import VueForm from 'vueform'
 import Vuelidate from 'vuelidate'
 import swal from 'sweetalert'
 import bForm from 'bootstrap-vue/es/components/form/form'
-import { required, between } from 'vuelidate/lib/validators'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 
 Vue.component('b-form', bForm)
 Vue.use(VueForm)
@@ -301,7 +309,8 @@ export default {
   },
   validations: {
     fname: {
-      required
+      required,
+      minLength: minLength(3)
     },
     age: {
       between: between(16, 70)

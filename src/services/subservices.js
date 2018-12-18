@@ -1,5 +1,4 @@
 import Api from '@/services/api'
-/*eslint linebreak-style: ["error", "windows"]*/
 export default {
   getSubmissions () {
     return Api().get('/submissions')

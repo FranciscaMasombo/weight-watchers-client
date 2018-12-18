@@ -9,6 +9,7 @@
             subbtnt="Add"
             @RegisterNewMember="RegisterNewMember"
           >
+
           </submission-form>
         </div>
         <!-- /col -->

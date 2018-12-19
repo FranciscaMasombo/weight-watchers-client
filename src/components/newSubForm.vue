@@ -3,6 +3,7 @@
     <b-form @submit.prevent="onSubmit" @reset="onReset">
       <div class="row">
         <div class="col">
+          <div class="error" v-if="!$v.fname.required"></div>
           <div class="form-group" :class="{ 'form-group--error': $v.fname.$error }">
           <b-form-group
             class="form-control-label"
@@ -17,7 +18,6 @@
             </b-form-input>
           </b-form-group>
           </div>
-          <div class="error" v-if="!$v.fname.required">Field is required</div>
           <div class="error" v-if="!$v.fname.minLength">Name must have at least
             {{$v.fname.$params.minLength.min}} letters.</div>
           <div class="error" v-if="submitStatus === 'OK'">required</div>
@@ -390,5 +390,25 @@ label {
   width: 480px;
   text-align: left;
   font-size: large;
+}
+label::after{
+  content: "*";
+}
+
+.required-field > label::after {
+  content: "*";
+  color: red;
+  margin-left: 0.25rem;
+}
+.dirty {
+  border-color: #5a5;
+  background: #efe;
+}
+.error {
+  color: red;
+}
+
+.error:focus {
+  outline-color: #ffa519;
 }
 </style>

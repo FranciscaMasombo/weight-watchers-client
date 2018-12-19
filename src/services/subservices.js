@@ -1,7 +1,7 @@
 import Api from '@/services/api'
 export default {
   getSubmissions () {
-    return Api().get('/submissions')
+    return Api().get('/listsubmissions')
   },
   addSubmissions (sub) {
     return Api().post('/add-submission', sub, {

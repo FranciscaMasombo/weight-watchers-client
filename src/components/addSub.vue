@@ -9,7 +9,6 @@
             subbtnt="Add"
             @RegisterNewMember="RegisterNewMember"
           >
-
           </submission-form>
         </div>
         <!-- /col -->
@@ -67,7 +66,7 @@ export default {
 <style scoped>
 #app1 {
   width: 88%;
-  margin: 0 auto;
+  margin: 10px;
 }
 .vue-title {
   margin-top: 30px;

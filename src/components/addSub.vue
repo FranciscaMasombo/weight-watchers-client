@@ -4,12 +4,12 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-10">
-          <submission-form
+          <submissionform
             :sub="sub"
             subbtnt="Add"
-            @RegisterNewMember="RegisterNewMember"
+            @RegisterNewMemberUpdateNewMember="RegisterNewMember"
           >
-          </submission-form>
+          </submissionform>
         </div>
         <!-- /col -->
       </div>
@@ -25,7 +25,7 @@ export default {
   data () {
     return {
       sub: {
-        fname: 'f1',
+        fname: '',
         lname: '',
         email: '',
         number: '',
@@ -43,7 +43,7 @@ export default {
     }
   },
   components: {
-    'submission-form': SubmissionForm
+    'submissionform': SubmissionForm
   },
   methods: {
     RegisterNewMember: function (sub) {

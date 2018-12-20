@@ -1,14 +1,16 @@
 <template>
   <div>
-    <b-form @submit.prevent="onSubmit" @reset="onReset">
+    <b-form @submit.prevent="onSubmit" @reset="onReset" id="form">
       <div class="row">
         <div class="col">
           <div class="error" v-if="!$v.fname.required"> we need you email</div>
           <div class="form-group" :class="{ 'form-group--error': $v.fname.$error }">
           <b-form-group
+            id="fname"
             class="form-control-label"
             label="First Name">
             <b-form-input
+              id="fname"
               class="form__input"
               type="text"
               v-model.trim="$v.fname.$model"
@@ -27,7 +29,7 @@
             label-for="lname"
           >
             <b-form-input
-              id="fname"
+              id="lname"
               type="text"
               v-model="lname"
               required
@@ -281,7 +283,7 @@ Vue.use(VueForm)
 Vue.use(Vuelidate)
 
 export default {
-  name: 'FormData',
+  name: 'newSubForm',
   props: ['subbtnt', 'sub'],
   data () {
     return {
@@ -343,7 +345,7 @@ export default {
             'Add the new Submission: ' + JSON.stringify(this.sub, null, 5)
           )
           // this.$emit('value', this.sub)
-          this.$emit('RegisterNewMember', this.sub)
+          this.$emit('RegisterNewMemberUpdateNewMember', this.sub)
         }, 500)
       }
     },

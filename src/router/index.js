@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from '@/components/home'
-import subs from '@/components/subs'
-import addSub from '@/components/addSub'
-import updateSub from '@/components/updateSub'
+import addSub from '../components/addSub'
+import home from '../components/home'
+import subs from '../components/subs'
 import newViewSubs from '../components/newViewSubs'
+import update from '../components/update'
 Vue.use(Router)
 
 export default new Router({
@@ -31,8 +31,8 @@ export default new Router({
     },
     {
       path: '/update-submission',
-      name: 'updateSub',
-      component: updateSub,
+      name: 'update',
+      component: update,
       props: true
     }
   ]

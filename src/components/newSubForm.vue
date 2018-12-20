@@ -252,14 +252,13 @@
             >{{ subbtnt }}
           </b-button>
           <b-button type="reset" variant="danger">Reset </b-button>
-          <a
+          <b-button
             href="#/submissions"
             class="btn btn-primary btn1"
             id="bb"
             name="bb"
-            role="button"
-            >View Member Info</a
-          >
+            variant="info"
+          >View Member Info </b-button>
         </div>
       </div>
 

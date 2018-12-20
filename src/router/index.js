@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import addSub from '../components/addSub'
 import home from '../components/home'
-import subs from '../components/subs'
 import newViewSubs from '../components/newViewSubs'
 import update from '../components/update'
 Vue.use(Router)
@@ -16,11 +15,6 @@ export default new Router({
     },
     {
       path: '/submissions',
-      name: 'subs',
-      component: subs
-    },
-    {
-      path: '/add',
       name: 'newViewSubs',
       component: newViewSubs
     },

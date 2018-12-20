@@ -3,7 +3,7 @@
     <b-form @submit.prevent="onSubmit" @reset="onReset">
       <div class="row">
         <div class="col">
-          <div class="error" v-if="!$v.fname.required"></div>
+          <div class="error" v-if="!$v.fname.required"> we need you email</div>
           <div class="form-group" :class="{ 'form-group--error': $v.fname.$error }">
           <b-form-group
             class="form-control-label"
@@ -18,10 +18,7 @@
             </b-form-input>
           </b-form-group>
           </div>
-          <div class="error" v-if="!$v.fname.minLength">Name must have at least
-            {{$v.fname.$params.minLength.min}} letters.</div>
-          <div class="error" v-if="submitStatus === 'OK'">required</div>
-        </div>
+            </div>
         <div class="col">
           <b-form-group
             id="lname"
@@ -120,15 +117,13 @@
           <b-form-group
             id="weightType"
             class="form-control-label"
-            label="Weight Type"
+            label="Choose Weight Type"
             label-for="weightType"
           >
-            <b-form-select id="weightType"
-                           v-model="weightType"
+            <b-form-select v-model="weightType"
                            class="form-control"
-                           type="text" >
-              <option slot="first" :value="null">Choose...</option>
-              <option value="Pounds">Pounds</option>
+                           type="text"
+            ><option value="Pounds">Pounds</option>
               <option value="Stone">Stone</option>
               <option value="Kg">Kg</option>
             </b-form-select>
@@ -279,7 +274,7 @@ import VueForm from 'vueform'
 import Vuelidate from 'vuelidate'
 import swal from 'sweetalert'
 import bForm from 'bootstrap-vue/es/components/form/form'
-import { required, minLength, between } from 'vuelidate/lib/validators'
+import { required, between } from 'vuelidate/lib/validators'
 
 Vue.component('b-form', bForm)
 Vue.use(VueForm)
@@ -309,8 +304,7 @@ export default {
   },
   validations: {
     fname: {
-      required,
-      minLength: minLength(3)
+      required
     },
     age: {
       between: between(16, 70)

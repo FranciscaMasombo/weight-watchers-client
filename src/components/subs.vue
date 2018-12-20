@@ -40,7 +40,7 @@ export default {
       props: ['_id'],
       errors: [],
       columns: [
-        'name',
+        'fname',
         'age',
         'gender',
         'startWeight',
@@ -54,7 +54,7 @@ export default {
         filterable: ['name', 'age', 'location'],
         sortable: ['name', 'age'],
         headings: {
-          name: 'Name',
+          fname: 'Name',
           age: 'Age',
           gender: 'Gender',
           startWeight: 'Start Weight',

@@ -19,6 +19,15 @@
     </div>
   </div>
 </template>
+<!--<template slot="delete" slot-scope="props"-->
+<!--&gt;-->
+  <!--&lt;!&ndash; We use @click.stop here to prevent a 'row-clicked' event from also happening &ndash;&gt;-->
+  <!--<a  class="fa fa-trash-o fa-2x"-->
+      <!--v-for="sub in subs" v-bind:key="sub._id"-->
+      <!--@click="deleteSubmission(sub._id)" >-->
+  <!--</a>-->
+
+<!--</template>-->
 
 <script>
 import SubmissionServices from '@/services/subservices'

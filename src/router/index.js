@@ -27,8 +27,7 @@ export default new Router({
     {
       path: '/add-submission',
       name: 'addSub',
-      component: addSub,
-      props: true
+      component: addSub
     },
     {
       path: '/update-submission',

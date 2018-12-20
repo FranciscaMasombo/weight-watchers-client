@@ -25,7 +25,7 @@ export default {
   data () {
     return {
       sub: {
-        fname: '',
+        fname: 'f1',
         lname: '',
         email: '',
         number: '',

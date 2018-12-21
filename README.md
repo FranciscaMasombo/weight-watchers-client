@@ -31,21 +31,38 @@ Email : Frmm97@gmail.com
 
 This web appliaction for a Weight Watchers, this app is for the group leader to add new memmbers. they can fill in the members information like there starting weight, goal weight .etc when they have a weight watchers meeting agian the leader can then login and  updated the members info and they can leave a note. if a member has decided to stop atending the meetings the leader can then delet the member for the group. 
 ## App Features
+
 ### Video 
 (Click on image below)
-[![Web App](https://i.imgur.com/pHibVl9.png)](https://www.youtube.com/embed/qkWbVPdYZ-Q "Everything Is AWESOME")
+[![Web App](https://i.imgur.com/pHibVl9.png)](https://www.youtube.com/embed/qkWbVPdYZ-Q "Web App")
 
-#### Add new Member form
-![Screenshot](https://i.imgur.com/1gm6YQr.png)
-#### List 
-The table whre you can view the members informarion is where you can search, filter, update and delete
+### Add new Member form
 
+ <img src="https://i.imgur.com/1gm6YQr.png" width="500">
+
+### List 
+The table whre you can view the members informarion is where you can search, filter, update and delete.
+
+Once the member is added they show up here, only there name location where they go to a meeting and also the members age.
+
+<img src="https://i.imgur.com/PzGNE3b.png" width="500"> <img src="https://i.imgur.com/AMu87sn.png" width="300"> 
+
+To se the rest of the info press shew details and then once you are done press hide details  
+<img src="https://i.imgur.com/DboRqXX.png" width="500">
+### Update
+This will bring up the members info in the form that you use to add them 
+<img src="https://i.imgur.com/zTxubcS.png" width="500">
+### Delete
+<img src="https://i.imgur.com/gzPPBaV.png" width="300"> <img src="https://i.imgur.com/vdWzCkp.png" width="260"> <img src="https://i.imgur.com/Kxt3avm.png" width="300">
 ## API endpoints
 ![Screenshot](https://github.com/FranciscaMasombo/weight-watchers-client/blob/master/photos/tt.PNG)
 
 ## Data storage
+
 I used MLab for the database , the schemas are below 
+
  ### Model submissions-model.js
+ 
 ````bash
 let mongoose = require('mongoose')
 const UserSchema = require('mongoose')

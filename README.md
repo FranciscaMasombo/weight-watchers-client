@@ -31,11 +31,14 @@ Email : Frmm97@gmail.com
 
 This web appliaction for a Weight Watchers, this app is for the group leader to add new memmbers. they can fill in the members information like there starting weight, goal weight .etc when they have a weight watchers meeting agian the leader can then login and  updated the members info and they can leave a note. if a member has decided to stop atending the meetings the leader can then delet the member for the group. 
 ## App Features
-
 ### Video 
 (Click on image below)
 [![Web App](https://i.imgur.com/pHibVl9.png)](https://www.youtube.com/embed/qkWbVPdYZ-Q "Everything Is AWESOME")
 
+#### Add new Member form
+![Screenshot](https://i.imgur.com/1gm6YQr.png)
+#### List 
+The table whre you can view the members informarion is where you can search, filter, update and delete
 
 ## API endpoints
 ![Screenshot](https://github.com/FranciscaMasombo/weight-watchers-client/blob/master/photos/tt.PNG)

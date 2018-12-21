@@ -1,5 +1,4 @@
-# Assignment 2 –weight-watchers-client          [![Build Status](https://travis-ci.org/FranciscaMasombo/weight-watchers-server.svg?branch=master)](https://travis-ci.org/FranciscaMasombo/weight-watchers-server)            [![Coverage Status](https://coveralls.io/repos/github/FranciscaMasombo/weight-watchers-server/badge.svg?branch=master)](https://coveralls.io/github/FranciscaMasombo/weight-watchers-server?branch=master)
-
+# Assignment 2 –weight-watchers-client        
 
 
 ### Table of contents
@@ -56,6 +55,8 @@ This will bring up the members info in the form that you use to add them
 <img src="https://i.imgur.com/gzPPBaV.png" width="300"> <img src="https://i.imgur.com/vdWzCkp.png" width="260"> <img src="https://i.imgur.com/Kxt3avm.png" width="300">
 ## API endpoints
 ![Screenshot](https://github.com/FranciscaMasombo/weight-watchers-client/blob/master/photos/tt.PNG)
+
+## Server
 
 ## Data storage
 
@@ -162,19 +163,6 @@ The command "npm run coverage" exited with 0.
 ```
 ## Code
 
-``` bash
-// Custom Routes
-//gets
-app.get('/listSubmissions', subs.displayAll);
-app.get('/listOneSubmission/:id', subs.findSubmissionById);
-app.get('/findByLocation/:location', subs.findByLocation);
-//posts
-app.post('/add-submission',subs.addSubmissions);
-//puts
-app.put('/update-submission/:id',subs.updateSubmission);
-//deletes
-app.delete('/delete-submission/:id',subs.deleteSubmission);
-```
 ## Build Setup
 
 ``` bash

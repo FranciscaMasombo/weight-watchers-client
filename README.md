@@ -7,12 +7,12 @@
 <!--ts-->
    * [Contact info](#Contact-info)
    * [Web App functionality](#Web-App-functionality)
+      * [App Features](#App-Features)
+      * [Video](#Video)
    * [API endpoints](#API-endpoints)
    * [Data storage](#Data-storage)
       * [Model submissions-model.js](#Model-submissions-model.js)
       * [Model users-models.js](#Model-users-models.jss)
-   * [App Features](#App-Features)
-      * [Video](#Client)
    * [Server](#Client)
    * [Testing](#Testing)
      * [Sample Test execution](#Sample-Test-execution)
@@ -27,9 +27,15 @@ Name  : Fran
 
 Email : Frmm97@gmail.com
 
-## Assignment for Web dev
+## Web App functionality
 
 This web appliaction for a Weight Watchers, this app is for the group leader to add new memmbers. they can fill in the members information like there starting weight, goal weight .etc when they have a weight watchers meeting agian the leader can then login and  updated the members info and they can leave a note. if a member has decided to stop atending the meetings the leader can then delet the member for the group. 
+## App Features
+
+### Video 
+(Click on image below)
+[![Web App](https://i.imgur.com/pHibVl9.png)](https://www.youtube.com/embed/qkWbVPdYZ-Q "Everything Is AWESOME")
+
 
 ## API endpoints
 ![Screenshot](https://github.com/FranciscaMasombo/weight-watchers-client/blob/master/photos/tt.PNG)
@@ -80,11 +86,6 @@ userSchema.methods.comparePassword = function (password,hash) {
 module.exports = mongoose.model('users',userSchema,'users');
 
 ````
-## App Features
-
-[![Everything Is AWESOME](http://i.imgur.com/Ot5DWAW.png)](https://youtu.be/StTqXEQ2l-Y?t=35s "Everything Is AWESOME")
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qkWbVPdYZ-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 ## Testing
 
     $ npm cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha test/submissions-model-test.js

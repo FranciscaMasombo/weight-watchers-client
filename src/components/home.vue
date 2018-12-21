@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <div class="container mt-3 mt-sm-5">
+    <div class="container ">
       <b-carousel
         id="carousel1"
         style="text-shadow: 1px 1px 2px #333;"
@@ -43,7 +43,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: 'Welcome the weight Watchers',
       slide: 0,
       sliding: null
     }

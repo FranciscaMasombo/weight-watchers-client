@@ -1,4 +1,4 @@
-# weight-watchers-server          [![Build Status](https://travis-ci.org/FranciscaMasombo/weight-watchers-server.svg?branch=master)](https://travis-ci.org/FranciscaMasombo/weight-watchers-server)            [![Coverage Status](https://coveralls.io/repos/github/FranciscaMasombo/weight-watchers-server/badge.svg?branch=master)](https://coveralls.io/github/FranciscaMasombo/weight-watchers-server?branch=master)
+# Assignment 2 –weight-watchers-client          [![Build Status](https://travis-ci.org/FranciscaMasombo/weight-watchers-server.svg?branch=master)](https://travis-ci.org/FranciscaMasombo/weight-watchers-server)            [![Coverage Status](https://coveralls.io/repos/github/FranciscaMasombo/weight-watchers-server/badge.svg?branch=master)](https://coveralls.io/github/FranciscaMasombo/weight-watchers-server?branch=master)
 
 
 
@@ -6,54 +6,84 @@
 
 <!--ts-->
    * [Contact info](#Contact-info)
-   * [Overview](#Overview)
+   * [Web App functionality](#Web-App-functionality)
    * [API endpoints](#API-endpoints)
    * [Data storage](#Data-storage)
-      * [STDIN](#stdin)
-      * [Local files](#local-files)
+      * [Model submissions-model.js](#Model-submissions-model.js)
+      * [Model users-models.js](#Model-users-models.jss)
+   * [App Features](#App-Features)
+      * [Video](#Client)
+   * [Server](#Client)
    * [Testing](#Testing)
      * [Sample Test execution](#Sample-Test-execution)
      * [Continuous Integration and Test results](#Continuous-Integration-and-Test-results)
-   * [Code](#Code)
+   * [Code Examples](#Code)
    * [Build Setup](#Build-Setup)
-   * [Web Application](#Client)
+   * [References](#Client)
+   
 <!--te-->
 ### Contact info
 Name  : Fran
 
 Email : Frmm97@gmail.com
 
-## Overview
-Assignment for Web dev
-This is the server for the Client the
+## Assignment for Web dev
+
+This web appliaction for a Weight Watchers, this app is for the group leader to add new memmbers. they can fill in the members information like there starting weight, goal weight .etc when they have a weight watchers meeting agian the leader can then login and  updated the members info and they can leave a note. if a member has decided to stop atending the meetings the leader can then delet the member for the group. 
 
 ## API endpoints
-![Screenshot](https://github.com/FranciscaMasombo/weight-watchers-server/blob/master/photos/Capture.PNG)
+![Screenshot](https://github.com/FranciscaMasombo/weight-watchers-client/blob/master/photos/tt.PNG)
 
 ## Data storage
-
+I used MLab for the database , the schemas are below 
+ ### Model submissions-model.js
 ````bash
-
+let mongoose = require('mongoose')
+const UserSchema = require('mongoose')
 let SubmissionSchema =  new mongoose.Schema({
+
     fname: { type:String, required: true},
     lname: { type:String, required: true},
     email: { type: String, required: true },
     number: { type: String, required: true },
     gender: { type:String, required: true},
-    age: { type: Number, min: 16, max: 100, required: true },
+    age: { type: Number, min: 16, max: 70, required: true },
+    weightType: { type:String, required: true},
     startWeight: { type:Number, required: true },
-    goalWeight:{ type:Number, required: true },
-    currentWeight:{ type:Number, required: true},
-    height:{ type:Number},
+    goalWeight:{ type:Number, required: false },
+    currentWeight:{ type:Number, required: false},
     location:{ type:String, required: true },
-    date: { type: Date, default: Date.now, },
-    note: {type: String, required: true},
+    date: { type: String},
+    note: {type: String, required: false},
     user: {type: UserSchema.ObjectId, ref: 'user'},
-},  {collection: 'sub'});
+},  {collection: 'sub'})
+module.exports= mongoose.model('sub',SubmissionSchema )
 
 ````
+ ### Model users-models.js
+````bash
+let mongoose = require('mongoose');
+var bcrypt = require('bcrypt-nodejs');
+var schema = mongoose.Schema;
+let userSchema =  new schema({
+    email: { type: String, required: true},
+    password: { type: String, required: true},
+    location: {type: String, required: true},
+    workID: {type: String, required: true}
+},{collection: 'user'});
+userSchema.methods.hashPassword = function (password) {
+    return bcrypt.hashSync(password,bcrypt.genSaltSync(10))
+}
+userSchema.methods.comparePassword = function (password,hash) {
+    return bcrypt.compareSync(password,hash)
+}
+module.exports = mongoose.model('users',userSchema,'users');
 
-## Client
+````
+## App Features
+
+[![Everything Is AWESOME](http://i.imgur.com/Ot5DWAW.png)](https://youtu.be/StTqXEQ2l-Y?t=35s "Everything Is AWESOME")
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qkWbVPdYZ-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Testing
 

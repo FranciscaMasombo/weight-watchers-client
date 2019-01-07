@@ -12,7 +12,7 @@
    * [Data storage](#Data-storage)
       * [Model submissions-model.js](#Model-submissions-model.js)
       * [Model users-models.js](#Model-users-models.jss)
-   * [Server](#Client)
+   * [Server](#Server)
    * [Testing](#Testing)
      * [Sample Test execution](#Sample-Test-execution)
      * [Continuous Integration and Test results](#Continuous-Integration-and-Test-results)
@@ -57,6 +57,7 @@ This will bring up the members info in the form that you use to add them
 ![Screenshot](https://github.com/FranciscaMasombo/weight-watchers-client/blob/master/photos/tt.PNG)
 
 ## Server
+https://github.com/FranciscaMasombo/weight-watchers-server
 
 ## Data storage
 
